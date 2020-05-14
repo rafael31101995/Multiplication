@@ -3,8 +3,11 @@ import unittest
 
 def multiplication(multiplicador, multiplicando):
     mm = multiplicando[::-1]
+    multiplied = []
     for x in mm:
-        print(logic_of_multipling(multiplicador, x))
+        multiplied.append(logic_of_multipling(multiplicador, x))
+
+    making_sum(multiplied)
 
 
 def logic_of_multipling(multiplicador, multiplicando):
@@ -28,12 +31,17 @@ def logic_of_multipling(multiplicador, multiplicando):
     return answer[:: -1]
 
 
+def making_sum(values):
+    for value in values:
+        pass
+
+
 class Test_multiplication(unittest.TestCase):
     def setUp(self):
         pass
 
     def test_multiplica(self):
-        self.assertEqual(multiplica('999999999999999', '8888888888888'), '8888888888887991111111111112')
-        self.assertEqual(multiplica('999999999999999', '0'), '0')
-        self.assertEqual(multiplica('-1', '1'), '-1')
-        self.assertEqual(multiplica('100', '2000'), '2000')
+        self.assertEqual(multiplication('999999999999999', '8888888888888'), '8888888888887991111111111112')
+        self.assertEqual(multiplication('999999999999999', '0'), '0')
+        self.assertEqual(multiplication('-1', '1'), '-1')
+        self.assertEqual(multiplication('100', '2000'), '2000')

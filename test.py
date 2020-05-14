@@ -1,7 +1,10 @@
 def multiplication(multiplicador, multiplicando):
     mm = multiplicando[::-1]
+    multiplied = []
     for x in mm:
-        print(logic_of_multipling(multiplicador, x))
+        multiplied.append(logic_of_multipling(multiplicador, x))
+
+    making_sum(multiplied)
 
 
 def logic_of_multipling(multiplicador, multiplicando):
@@ -25,5 +28,10 @@ def logic_of_multipling(multiplicador, multiplicando):
     return answer[:: -1]
 
 
+def making_sum(values):
+    for value in values:
+        pass
+
+
 if __name__ == '__main__':
-    multiplication('99999', '123')
+    multiplication('1234', '123')
