@@ -31,9 +31,20 @@ def logic_of_multipling(multiplicador, multiplicando):
     return answer[:: -1]
 
 
-def making_sum(values):
-    for value in values:
-        pass
+def somando_list(lista):
+  result = ''
+  eleva = 0
+  for x in range(len(lista[0])):
+    soma = str(int(lista[0][x:x+1]) + int(lista[1][x:x+1]) + eleva)
+    if int(soma) >= 10:
+      eleva = int(soma[0:1])
+      result = result + soma[1:2]
+      print(result)
+    else:
+      eleva = 0
+      result = result + soma
+  result = result + str(eleva)
+  print(result[::-1])
 
 
 class Test_multiplication(unittest.TestCase):

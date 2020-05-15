@@ -28,10 +28,18 @@ def logic_of_multipling(multiplicador, multiplicando):
     return answer[:: -1]
 
 
+# This function, add zeros to the end of each number.
 def making_sum(values):
-    for value in values:
-        pass
+    prepare_to_sum = []
+    for index, value in enumerate(values):
+        if index >= 1:
+            adding_zero = index * '0'
+            value = value + adding_zero
+            prepare_to_sum.append(value)
+
+    for index, value in enumerate(prepare_to_sum):
+        
 
 
 if __name__ == '__main__':
-    multiplication('1234', '123')
+    multiplication('9990', '120')
