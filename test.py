@@ -3,10 +3,14 @@ def multiplication(multiplicador, multiplicando):
     multiplied = []
     for x in mm:
         multiplied.append(logic_of_multipling(multiplicador, x))
-    print(multiplied)
     result = adjusting_list(multiplied)
+    x = True
+    new_list = []
+    while x:
+        result = making_sum(result)
+        if len(result) == 1:
+            x = False
     print(result)
-    making_sum(result)
 
 
 def logic_of_multipling(multiplicador, multiplicando):
@@ -38,20 +42,20 @@ def adjusting_list(values):
             adding_zero = index * '0'
             value = value + adding_zero
             prepare_to_sum.append(value)
+        else:
+            prepare_to_sum.append(value)
     return prepare_to_sum
 
 
 def making_sum(lista):
-    new_list = []
-    for value in lista:
-        new_list.append(value[::-1])
 
-    x = sorted(new_list)
+    x = inverting_number_of_list(lista)
 
     result = 0
     ll = 0
     result_string = ''
     another_list = []
+
     for index, value1 in enumerate(x[0]):
         try:
             result = (int(value1) + int(x[1][index:index + 1]) + ll)
@@ -66,16 +70,28 @@ def making_sum(lista):
         result_string += str(result)
         result = ''
 
-    another_list.append(result_string)
+    another_list.append(result_string[:: -1])
     for index, value in enumerate(x):
         if index >= 2:
-            another_list.append(value)
+            another_list.append(value[:: -1])
         else:
             pass
-    print(another_list)
+    return another_list
+
+
+def inverting_number_of_list(list_of_numbers):
+    x = []
+    for numbers in list_of_numbers:
+        x.append(int(numbers))
+
+    x = sorted(x, reverse=True)
+    new_list = []
+    for numbers in x:
+        new_list.append(str(numbers)[::-1])
+    return new_list
 
 
 if __name__ == '__main__':
-    multiplication('9990', '120')
+    multiplication('999999999999999', '0')
 
 
