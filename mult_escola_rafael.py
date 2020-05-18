@@ -2,6 +2,10 @@ import unittest
 
 
 def multiplication(multiplicador, multiplicando):
+    result_list = check_if_is_negative(multiplicador, multiplicando)
+    multiplicador = result_list[0]
+    multiplicando = result_list[1]
+
     mm = multiplicando[::-1]
     multiplied = []
     for x in mm:
@@ -13,7 +17,30 @@ def multiplication(multiplicador, multiplicando):
         result = making_sum(result)
         if len(result) == 1:
             x = False
-    return result[0]
+    if result_list[2] == '+':
+        return result[0]
+    else:
+        result_string = f'{result_list[2]}{result[0]}'
+        return result_string
+
+
+def check_if_is_negative(x, y):
+    signal = []
+    string_signal = '+'
+    if x[0:1] == '-':
+        x = x.replace('-', '')
+        signal.append('negative')
+    if y[0:1] == '-':
+        y = y.replace('-', '')
+        signal.append('negative')
+
+    if len(signal) > 1:
+        string_signal = '+'
+    elif len(signal) == 1:
+        string_signal = '-'
+
+    result_list = [x, y, string_signal]
+    return result_list
 
 
 def logic_of_multipling(multiplicador, multiplicando):
@@ -102,4 +129,5 @@ class Test_multiplication(unittest.TestCase):
         self.assertEqual(multiplication('999999999999999', '8888888888888'), '8888888888887991111111111112')
         self.assertEqual(multiplication('999999999999999', '0'), '0')
         self.assertEqual(multiplication('-1', '1'), '-1')
+        self.assertEqual(multiplication('-1', '-1'), '1')
         self.assertEqual(multiplication('100', '2000'), '200000')
