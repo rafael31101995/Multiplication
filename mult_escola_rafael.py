@@ -12,7 +12,6 @@ def multiplication(multiplicador, multiplicando):
         multiplied.append(logic_of_multipling(multiplicador, x))
     result = adjusting_list(multiplied)
     x = True
-    new_list = []
     while x:
         result = making_sum(result)
         if len(result) == 1:
@@ -46,7 +45,6 @@ def check_if_is_negative(x, y):
 def logic_of_multipling(multiplicador, multiplicando):
     answer = ''
     value = ''
-    sum_value = 0
     for x in reversed(range(0, len(multiplicador))):
         try:
             sum_value = int(value)
@@ -78,10 +76,8 @@ def adjusting_list(values):
 
 
 def making_sum(lista):
-
     x = inverting_number_of_list(lista)
 
-    result = 0
     ll = 0
     result_string = ''
     another_list = []
