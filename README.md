@@ -24,6 +24,7 @@ leves para facilitar a soma dos valores.
 * Essa lista é ajustada, incluindo 0 para cada um dos espaços em branco.
 O exemplo refeito abaixo.
        
+Exemplo:       
        
           98765
         x 12345
