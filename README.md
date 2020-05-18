@@ -21,7 +21,8 @@ leves para facilitar a soma dos valores.
 
 *  A multiplicação é feita normalmente, número por número. Ao final da multiplicação\
 é gerada uma lista com os 5 números, ainda utilizando o exemplo na parte de proposta.
-* Essa lista é ajustada, incluindo 0 para cada um dos espaços em branco. O exemplo refeito abaixo.
+* Essa lista é ajustada, incluindo 0 para cada um dos espaços em branco.
+O exemplo refeito abaixo.
        
        
           98765
