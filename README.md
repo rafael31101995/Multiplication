@@ -44,5 +44,22 @@ Este processo é realizado varias vezes até a lista possuir um unico número, n
 * Lembrando que ao longo do processo é realizado a soma invertida do valor.
 
 #### As funções
+Abaixo é listada as funções do programa e suas "funções".
 
+* multiplication
+    * Esta é a função principal, ela é utilizada para chamar as outras funções, para que os números sejam\
+    calculados corretamente de acordo com a logica. Recebe dois parametros, o multiplicador e o multiplicando.
+* check_if_is_negative
+    * O nome é bem descritivo, porém ela vai um pouco além. Ela também nos da o resultado da multiplicação\
+    de sinais, caso seja negativo com negativo, o resultado será positivo, caso seja negativo com positivo, o resultado,\
+    será negativo.
+* multipling_logic
+    * Esta função tem toda a logica de multiplicação, nela é feita a multiplicação passo a passo, e seu retorno\
+    será uma lista com o resultado de cada valor multiplicado.
+* adjusting_list
+    * Serve para incluir na lista que foi retornada pela função anterior, zeros ao final que cada número, exceto o primeiro da lista.
+* making_sum
+    * Esta função recebe a lista de valores, inverte a ordem dela e faz a soma de dois em dois e nos dá o resultado final.
+* inverting_number_of_list
+    * Inverte cada número da lista que recebe, e retorna uma lista com cada número invertido.
     

@@ -9,7 +9,7 @@ def multiplication(multiplicador, multiplicando):
     mm = multiplicando[::-1]
     multiplied = []
     for x in mm:
-        multiplied.append(logic_of_multipling(multiplicador, x))
+        multiplied.append(multipling_logic(multiplicador, x))
     result = adjusting_list(multiplied)
     x = True
     while x:
@@ -42,7 +42,7 @@ def check_if_is_negative(x, y):
     return result_list
 
 
-def logic_of_multipling(multiplicador, multiplicando):
+def multipling_logic(multiplicador, multiplicando):
     answer = ''
     value = ''
     for x in reversed(range(0, len(multiplicador))):
