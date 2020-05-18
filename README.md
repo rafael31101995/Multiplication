@@ -63,3 +63,11 @@ Abaixo é listada as funções do programa e suas "funções".
 * inverting_number_of_list
     * Inverte cada número da lista que recebe, e retorna uma lista com cada número invertido.
     
+#### TDD - Test Driven Development
+Ao final do programa temos os testes. O criterios de cada teste estão descritos a seguir.
+
+* Teste de números exageradamente grandes.
+* Teste de um número grande por zero.
+* Teste do primeiro número negativo por um segundo número positivo.
+* Teste de dois números negativos, resultado positivo.
+* Teste de x < y. Primeiro número pequeno por um segundo número grande. 
