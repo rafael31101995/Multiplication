@@ -1,42 +1,28 @@
 def multiplication(top_number, bottom_number):
-    result_list = check_if_is_negative(top_number, bottom_number)
+    result_list = check_signal(top_number, bottom_number)
     top_number = result_list[0]
     bottom_number = result_list[1]
 
-    mm = bottom_number[::-1]
+    bottom_number = bottom_number[::-1]
     multiplied = []
-    for x in mm:
+    for x in bottom_number:
         multiplied.append(multiplying_logic(top_number, x))
-    result = adjusting_list(multiplied)
+    result = adding_zeros(multiplied)
+
     x = True
     while x:
-        result = making_sum(result)
+        result = sum_logic(result)
         if len(result) == 1:
             x = False
     if result_list[2] == '+':
+        # Sending for formatting.
+        formatting_content(top_number, bottom_number, multiplied, result[0])
         return result[0]
     else:
         result_string = f'{result_list[2]}{result[0]}'
+        # Sending for formatting.
+        formatting_content(top_number, bottom_number, multiplied, result_string)
         return result_string
-
-
-def check_if_is_negative(x, y):
-    signal = []
-    string_signal = '+'
-    if x[0:1] == '-':
-        x = x.replace('-', '')
-        signal.append('negative')
-    if y[0:1] == '-':
-        y = y.replace('-', '')
-        signal.append('negative')
-
-    if len(signal) > 1:
-        string_signal = '+'
-    elif len(signal) == 1:
-        string_signal = '-'
-
-    result_list = [x, y, string_signal]
-    return result_list
 
 
 def multiplying_logic(top_number, bottom_number):
@@ -59,20 +45,7 @@ def multiplying_logic(top_number, bottom_number):
     return answer[:: -1]
 
 
-# This function, add zeros to the end of each number.
-def adjusting_list(values):
-    prepare_to_sum = []
-    for index, value in enumerate(values):
-        if index >= 1:
-            adding_zero = index * '0'
-            value = value + adding_zero
-            prepare_to_sum.append(value)
-        else:
-            prepare_to_sum.append(value)
-    return prepare_to_sum
-
-
-def making_sum(initial_list):
+def sum_logic(initial_list):
     x = inverting_number_of_list(initial_list)
 
     ll = 0
@@ -102,6 +75,38 @@ def making_sum(initial_list):
     return another_list
 
 
+# This function, add zeros to the end of each number.
+def adding_zeros(values):
+    prepare_to_sum = []
+    for index, value in enumerate(values):
+        if index >= 1:
+            adding_zero = index * '0'
+            value = value + adding_zero
+            prepare_to_sum.append(value)
+        else:
+            prepare_to_sum.append(value)
+    return prepare_to_sum
+
+
+def check_signal(x, y):
+    signal = []
+    string_signal = '+'
+    if x[0:1] == '-':
+        x = x.replace('-', '')
+        signal.append('negative')
+    if y[0:1] == '-':
+        y = y.replace('-', '')
+        signal.append('negative')
+
+    if len(signal) > 1:
+        string_signal = '+'
+    elif len(signal) == 1:
+        string_signal = '-'
+
+    result_list = [x, y, string_signal]
+    return result_list
+
+
 def inverting_number_of_list(list_of_numbers):
     x = []
     for numbers in list_of_numbers:
@@ -114,5 +119,25 @@ def inverting_number_of_list(list_of_numbers):
     return new_list
 
 
+def formatting_content(x,y, list_for_add, result):
+    list_1 = sorted([x, y[:: -1]], reverse=True)
+    result_length = len(result)
+
+    # Getting the length from each number from list_1, after sorted reverse.
+    length_x = len(list_1[0])
+    length_y = len(list_1[1])
+
+    # Getting the difference.
+    length = length_x - length_y
+
+    print(' '*((result_length - length_x)-1), list_1[0])
+    print('x', ' '*((result_length - length_y)-3), list_1[1])
+    print('-'*result_length)
+
+    
+
+    print(result)
+
+
 if __name__ == '__main__':
-    multiplication('', '')
+    multiplication('100', '2000')
