@@ -1,5 +1,5 @@
-def multiplication(top_number, bottom_number):
-    result_list = check_signal(top_number, bottom_number)
+def multiplication(top_number_initial, bottom_number_initial):
+    result_list = check_signal(top_number_initial, bottom_number_initial)
     top_number = result_list[0]
     bottom_number = result_list[1]
 
@@ -9,19 +9,16 @@ def multiplication(top_number, bottom_number):
         multiplied.append(multiplying_logic(top_number, x))
     result = adding_zeros(multiplied)
 
-    x = True
-    while x:
-        result = sum_logic(result)
-        if len(result) == 1:
-            x = False
+    result = sum_logic(result)
+
     if result_list[2] == '+':
         # Sending for formatting.
-        formatting_content(top_number, bottom_number, multiplied, result[0])
-        return result[0]
+        # formatting_content(top_number_initial, bottom_number_initial, multiplied, str(result))
+        return str(result)
     else:
-        result_string = f'{result_list[2]}{result[0]}'
+        result_string = f'{result_list[2]}{str(result)}'
         # Sending for formatting.
-        formatting_content(top_number, bottom_number, multiplied, result_string)
+        # formatting_content(top_number_initial, bottom_number_initial, multiplied, result_string)
         return result_string
 
 
@@ -46,33 +43,14 @@ def multiplying_logic(top_number, bottom_number):
 
 
 def sum_logic(initial_list):
-    x = inverting_number_of_list(initial_list)
-
-    ll = 0
-    result_string = ''
     another_list = []
+    for number in initial_list:
+        another_list.append(int(number))
+    result = 0
+    for index in reversed(range(0, len(another_list))):
+        result += another_list[index]
 
-    for index, value1 in enumerate(x[0]):
-        try:
-            result = (int(value1) + int(x[1][index:index + 1]) + ll)
-            if result > 9:
-                ll = int(str(result)[0:1])
-                result = int(str(result)[1:2])
-            else:
-                ll = 0
-        except:
-            result = int(value1) + ll
-            ll = 0
-        result_string += str(result)
-        result = ''
-
-    another_list.append(result_string[:: -1])
-    for index, value in enumerate(x):
-        if index >= 2:
-            another_list.append(value[:: -1])
-        else:
-            pass
-    return another_list
+    return result
 
 
 # This function, add zeros to the end of each number.
@@ -119,10 +97,9 @@ def inverting_number_of_list(list_of_numbers):
     return new_list
 
 
-def formatting_content(x,y, list_for_add, result):
-    list_1 = sorted([x, y[:: -1]], reverse=True)
+def formatting_content(x, y, list_for_add, result):
+    list_1 = sorted([x, y], reverse=True)
     result_length = len(result)
-
     # Getting the length from each number from list_1, after sorted reverse.
     length_x = len(list_1[0])
     length_y = len(list_1[1])
@@ -130,14 +107,25 @@ def formatting_content(x,y, list_for_add, result):
     # Getting the difference.
     length = length_x - length_y
 
-    print(' '*((result_length - length_x)-1), list_1[0])
-    print('x', ' '*((result_length - length_y)-3), list_1[1])
-    print('-'*result_length)
+    print(' ' * (result_length - length_x), list_1[0])
+    print('x', f'{list_1[1]}'.rjust(result_length-1))
+    print('-' * (result_length + 1))
 
-    
+    for index in range(len(list_for_add)):
+        print(f'{list_for_add[index]} {(" "*index)}'.rjust(result_length+2))
 
-    print(result)
+    print('-' * (result_length + 1))
+    print('', result)
 
 
 if __name__ == '__main__':
-    multiplication('100', '2000')
+    multiplication('999999999999999', '8888888888888')
+    print('')
+    print('')
+    print('')
+    multiplication('-98765', '-12345')
+    print('')
+    print('')
+    print('')
+    multiplication('594', '-3242343')
+    # multiplication('59454545454545', '32423433454')
