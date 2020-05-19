@@ -1,15 +1,15 @@
 import unittest
 
 
-def multiplication(multiplicador, multiplicando):
-    result_list = check_if_is_negative(multiplicador, multiplicando)
-    multiplicador = result_list[0]
-    multiplicando = result_list[1]
+def multiplication(top_number, bottom_number):
+    result_list = check_if_is_negative(top_number, bottom_number)
+    top_number = result_list[0]
+    bottom_number = result_list[1]
 
-    mm = multiplicando[::-1]
+    mm = bottom_number[::-1]
     multiplied = []
     for x in mm:
-        multiplied.append(multipling_logic(multiplicador, x))
+        multiplied.append(multiplying_logic(top_number, x))
     result = adjusting_list(multiplied)
     x = True
     while x:
@@ -42,16 +42,16 @@ def check_if_is_negative(x, y):
     return result_list
 
 
-def multipling_logic(multiplicador, multiplicando):
+def multiplying_logic(top_number, bottom_number):
     answer = ''
     value = ''
-    for x in reversed(range(0, len(multiplicador))):
+    for x in reversed(range(0, len(top_number))):
         try:
             sum_value = int(value)
         except:
             sum_value = 0
 
-        result = (int(multiplicador[x:x + 1]) * int(multiplicando)) + sum_value
+        result = (int(top_number[x:x + 1]) * int(bottom_number)) + sum_value
         if result >= 10:
             value = str(result)[0:1]
             answer = answer + str(result)[1:2]
@@ -75,8 +75,8 @@ def adjusting_list(values):
     return prepare_to_sum
 
 
-def making_sum(lista):
-    x = inverting_number_of_list(lista)
+def making_sum(initial_list):
+    x = inverting_number_of_list(initial_list)
 
     ll = 0
     result_string = ''
@@ -121,7 +121,7 @@ class Test_multiplication(unittest.TestCase):
     def setUp(self):
         pass
 
-    def test_multiplica(self):
+    def test_multiplication(self):
         self.assertEqual(multiplication('999999999999999', '8888888888888'), '8888888888887991111111111112')
         self.assertEqual(multiplication('999999999999999', '0'), '0')
         self.assertEqual(multiplication('-1', '1'), '-1')
