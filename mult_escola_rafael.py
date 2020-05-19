@@ -1,6 +1,3 @@
-import unittest
-
-
 def multiplication(top_number, bottom_number):
     result_list = check_if_is_negative(top_number, bottom_number)
     top_number = result_list[0]
@@ -117,13 +114,5 @@ def inverting_number_of_list(list_of_numbers):
     return new_list
 
 
-class Test_multiplication(unittest.TestCase):
-    def setUp(self):
-        pass
-
-    def test_multiplication(self):
-        self.assertEqual(multiplication('999999999999999', '8888888888888'), '8888888888887991111111111112')
-        self.assertEqual(multiplication('999999999999999', '0'), '0')
-        self.assertEqual(multiplication('-1', '1'), '-1')
-        self.assertEqual(multiplication('-1', '-1'), '1')
-        self.assertEqual(multiplication('100', '2000'), '200000')
+if __name__ == '__main__':
+    multiplication('', '')
