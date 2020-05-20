@@ -1,7 +1,11 @@
 def multiplication(top_number_initial, bottom_number_initial):
     result_list = check_signal(top_number_initial, bottom_number_initial)
-    top_number = result_list[0]
-    bottom_number = result_list[1]
+    # Getting float_point
+
+    float_index = check_float_index(result_list[0]) + check_float_index(result_list[1])
+
+    top_number = result_list[0].replace('.', '')
+    bottom_number = result_list[1].replace('.', '')
 
     bottom_number = bottom_number[::-1]
     multiplied = []
@@ -10,15 +14,23 @@ def multiplication(top_number_initial, bottom_number_initial):
     result = adding_zeros(multiplied)
 
     result = sum_logic(result)
+    result_2 = str(result)
+    new_result = ''
+    for index, number in enumerate(result_2[::-1]):
+        if index == float_index and float_index != 0:
+            new_result += '.'
+            new_result += number
+        else:
+            new_result += number
 
     if result_list[2] == '+':
         # Sending for formatting.
-        # formatting_content(top_number_initial, bottom_number_initial, multiplied, str(result))
+        formatting_content(top_number_initial, bottom_number_initial, multiplied, new_result[::-1])
         return str(result)
     else:
         result_string = f'{result_list[2]}{str(result)}'
         # Sending for formatting.
-        # formatting_content(top_number_initial, bottom_number_initial, multiplied, result_string)
+        formatting_content(top_number_initial, bottom_number_initial, multiplied, new_result[::-1])
         return result_string
 
 
@@ -26,9 +38,9 @@ def multiplying_logic(top_number, bottom_number):
     answer = ''
     value = ''
     for x in reversed(range(0, len(top_number))):
-        try:
+        if value.isalnum():
             sum_value = int(value)
-        except:
+        else:
             sum_value = 0
 
         result = (int(top_number[x:x + 1]) * int(bottom_number)) + sum_value
@@ -85,16 +97,11 @@ def check_signal(x, y):
     return result_list
 
 
-def inverting_number_of_list(list_of_numbers):
-    x = []
-    for numbers in list_of_numbers:
-        x.append(int(numbers))
-
-    x = sorted(x, reverse=True)
-    new_list = []
-    for numbers in x:
-        new_list.append(str(numbers)[::-1])
-    return new_list
+def check_float_index(string_number):
+    if '.' in string_number[::-1]:
+        return string_number[::-1].index('.')
+    else:
+        return 0
 
 
 def formatting_content(x, y, list_for_add, result):
@@ -108,24 +115,43 @@ def formatting_content(x, y, list_for_add, result):
     length = length_x - length_y
 
     print(' ' * (result_length - length_x), list_1[0])
-    print('x', f'{list_1[1]}'.rjust(result_length-1))
+    print('x', f'{list_1[1]}'.rjust(result_length - 1))
     print('-' * (result_length + 1))
 
     for index in range(len(list_for_add)):
-        print(f'{list_for_add[index]} {(" "*index)}'.rjust(result_length+2))
+        print(f'{list_for_add[index]} {(" " * index)}'.rjust(result_length + 2))
 
     print('-' * (result_length + 1))
     print('', result)
 
 
 if __name__ == '__main__':
-    multiplication('999999999999999', '8888888888888')
+    multiplication('2.5', '2.5')
     print('')
     print('')
     print('')
+
     multiplication('-98765', '-12345')
     print('')
     print('')
     print('')
+
+    multiplication('20.2', '2.2')
+    print('')
+    print('')
+    print('')
+
+    '''
+    multiplication('-98765', '-12345')
+    print('')
+    print('')
+    print('')
+
     multiplication('594', '-3242343')
+    print('')
+    print('')
+    print('')
+    '''
+
+    # multiplication('2', '2.5')
     # multiplication('59454545454545', '32423433454')
