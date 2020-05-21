@@ -1,34 +1,31 @@
 def multiplication(top_number_initial, bottom_number_initial):
-    result_list = check_signal(top_number_initial, bottom_number_initial)
-    # Getting float_point
+    values_to_sum = check_signal(top_number_initial, bottom_number_initial)
+    float_index = check_float_index(values_to_sum[0]) + check_float_index(values_to_sum[1])
 
-    float_index = check_float_index(result_list[0]) + check_float_index(result_list[1])
-
-    top_number = result_list[0].replace('.', '')
-    bottom_number = result_list[1].replace('.', '')
+    top_number = values_to_sum[0].replace('.', '')
+    bottom_number = values_to_sum[1].replace('.', '')
 
     bottom_number = bottom_number[::-1]
     multiplied = []
-    for x in bottom_number:
-        multiplied.append(multiplying_logic(top_number, x))
+    for digit in bottom_number:
+        multiplied.append(multiplying_logic(top_number, digit))
     result = adding_zeros(multiplied)
 
     result = sum_logic(result)
-    result_2 = str(result)
     new_result = ''
-    for index, number in enumerate(result_2[::-1]):
+    for index, number in enumerate(str(result)[::-1]):
         if index == float_index and float_index != 0:
             new_result += '.'
             new_result += number
         else:
             new_result += number
 
-    if result_list[2] == '+':
+    if values_to_sum[2] == '+' or str(new_result) == '0':
         # Sending for formatting.
         formatting_content(top_number_initial, bottom_number_initial, multiplied, new_result[::-1])
-        return str(result)
+        return str(new_result)[::-1]
     else:
-        result_string = f'{result_list[2]}{str(result)}'
+        result_string = f'{values_to_sum[2]}{str(new_result)[::-1]}'
         # Sending for formatting.
         formatting_content(top_number_initial, bottom_number_initial, multiplied, new_result[::-1])
         return result_string
@@ -61,7 +58,6 @@ def sum_logic(initial_list):
     result = 0
     for index in reversed(range(0, len(another_list))):
         result += another_list[index]
-
     return result
 
 
@@ -135,13 +131,12 @@ if __name__ == '__main__':
     print('')
     print('')
     print('')
-
+    '''
     multiplication('20.2', '2.2')
     print('')
     print('')
     print('')
 
-    '''
     multiplication('-98765', '-12345')
     print('')
     print('')
@@ -152,6 +147,5 @@ if __name__ == '__main__':
     print('')
     print('')
     '''
-
-    # multiplication('2', '2.5')
+    # multiplication('222.5', '100154.54')
     # multiplication('59454545454545', '32423433454')

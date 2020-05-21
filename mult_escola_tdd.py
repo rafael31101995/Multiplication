@@ -12,3 +12,6 @@ class Test_multiplication(unittest.TestCase):
         self.assertEqual(school.multiplication('-1', '1'), '-1')
         self.assertEqual(school.multiplication('-1', '-1'), '1')
         self.assertEqual(school.multiplication('100', '2000'), '200000')
+        self.assertEqual(school.multiplication('2.5', '2.5'), '6.25')
+        self.assertEqual(school.multiplication('-1000.25', '1521.2'), '-1521580.300')
+        self.assertEqual(school.multiplication('-2', '0'), '0')
